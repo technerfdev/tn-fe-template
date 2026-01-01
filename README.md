@@ -2,6 +2,8 @@
 
 > Production-ready React template for immediate use. Fork it, customize it, and start building your next project in minutes.
 
+Live: [https://technerf-fe-template.netlify.app/](https://technerf-fe-template.netlify.app/)
+
 ## Why Use This Template?
 
 This is a **fork-ready template** designed to get you from zero to production-ready in minutes. It includes:
@@ -100,10 +102,14 @@ After forking, you'll want to:
 ### Available Scripts
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production (TypeScript check + Vite build)
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
+pnpm dev              # Start development server
+pnpm build            # Build for production (TypeScript check + Vite build)
+pnpm preview          # Preview production build
+pnpm lint             # Run ESLint
+pnpm test             # Run tests in watch mode
+pnpm test:ui          # Run tests with UI
+pnpm test:run         # Run tests once
+pnpm test:coverage    # Run tests with coverage report
 ```
 
 ## Project Structure
@@ -252,6 +258,62 @@ This template is optimized for modern development workflows:
 - Prettier for code formatting
 - Path aliases (`@/` for `src/`)
 - Hot Module Replacement (HMR)
+- Comprehensive test suite with Vitest
+
+## Testing
+
+This template includes a comprehensive testing setup using **Vitest** and **React Testing Library**.
+
+### Running Tests
+
+```bash
+# Run tests in watch mode
+pnpm test
+
+# Run tests with UI
+pnpm test:ui
+
+# Run tests once
+pnpm test:run
+
+# Run tests with coverage report
+pnpm test:coverage
+```
+
+### Test Coverage
+
+The template includes tests for:
+- ✅ **LoginForm** - Form validation, user input, error handling
+- ✅ **RegisterForm** - Registration flow, password validation, terms acceptance
+- ✅ **Header** - Navigation, authentication states
+- ✅ **Home Page** - Content rendering, links, features display
+
+### Writing Tests
+
+Tests are co-located with components:
+```
+src/
+├── components/
+│   └── forms/
+│       └── LoginForm/
+│           ├── LoginForm.tsx
+│           ├── LoginForm.test.tsx    ← Test file
+│           └── LoginForm.schema.ts
+```
+
+Example test:
+```typescript
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { MyComponent } from './MyComponent';
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent />);
+    expect(screen.getByText(/hello/i)).toBeInTheDocument();
+  });
+});
+```
 
 ## Customization Guide
 
